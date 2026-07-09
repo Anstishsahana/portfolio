@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Anstish Sahana M — Computer Science Engineer</title>
+<meta name="description" content="Portfolio of Anstish Sahana M — Computer Science & Engineering student, AI systems builder, Smart India Hackathon 2025 winner." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:        #0A0E1A;
+    --panel:      #12172A;
+    --panel-2:    #161c33;
+    --hairline:   #262d47;
+    --text:       #E9ECF4;
+    --text-dim:   #9AA3BF;
+    --text-faint: #5C6486;
+    --signal:     #52E0C4;   /* primary accent — teal/signal */
+    --signal-dim: #2E8574;
+    --amber:      #E8A33D;   /* secondary accent — classified/winner stamp */
+    --danger:     #E15B5B;
+
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+    --font-body: 'Inter', sans-serif;
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background: var(--ink);
+    color: var(--text);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* subtle hex-grid texture, echo of SHA-256 hashing / node graphs in his projects */
+  body::before{
+    content:"";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.35;
+    background-image:
+      linear-gradient(var(--hairline) 1px, transparent 1px),
+      linear-gradient(90deg, var(--hairline) 1px, transparent 1px);
+    background-size: 42px 42px;
+    mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, black 0%, transparent 70%);
+  }
+
+  a{ color: inherit; text-decoration: none; }
+
+  ::selection{ background: var(--signal); color: var(--ink); }
+
+  :focus-visible{
+    outline: 2px solid var(--signal);
+    outline-offset: 3px;
+  }
+
+  .wrap{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .eyebrow{
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--signal);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width: 7px; height: 7px;
+    background: var(--signal);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--signal);
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(10,14,26,0.82);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .nav-inner{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 18px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-id{
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-dim);
+    letter-spacing: 0.04em;
+  }
+  .nav-id b{ color: var(--text); font-weight: 600; }
+  .nav-links{
+    display: flex;
+    gap: 28px;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .nav-links a{ color: var(--text-dim); transition: color 0.2s; position: relative; }
+  .nav-links a:hover{ color: var(--signal); }
+  @media (max-width: 640px){ .nav-links{ display:none; } }
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    padding: 100px 0 80px;
+    position: relative;
+  }
+  .file-tag{
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    border: 1px solid var(--hairline);
+    padding: 7px 14px;
+    border-radius: 3px;
+    margin-bottom: 28px;
+  }
+  .file-tag .dot{ width:6px; height:6px; border-radius:50%; background: var(--signal); }
+
+  .hero-name{
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2.6rem, 7vw, 5rem);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+  .hero-name .cursor{
+    display:inline-block;
+    width: 0.5ch;
+    background: var(--signal);
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  .hero-role{
+    font-family: var(--font-mono);
+    font-size: clamp(0.95rem, 2vw, 1.15rem);
+    color: var(--signal);
+    margin-top: 18px;
+    letter-spacing: 0.02em;
+  }
+
+  .hero-desc{
+    max-width: 640px;
+    color: var(--text-dim);
+    font-size: 1.02rem;
+    margin-top: 26px;
+  }
+
+  .hero-cta{
+    display: flex;
+    gap: 16px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+  }
+  .btn{
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 14px 26px;
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  }
+  .btn-primary{
+    background: var(--signal);
+    color: var(--ink);
+    font-weight: 600;
+    border: 1px solid var(--signal);
+  }
+  .btn-primary:hover{ transform: translateY(-2px); background:#6ff0d6; }
+  .btn-ghost{
+    border: 1px solid var(--hairline);
+    color: var(--text);
+  }
+  .btn-ghost:hover{ border-color: var(--signal); color: var(--signal); transform: translateY(-2px); }
+
+  .hero-stats{
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 48px;
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--hairline);
+  }
+  @media (max-width: 640px){ .hero-stats{ grid-template-columns: 1fr; gap: 20px; } }
+  .stat-num{
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .stat-num span{ color: var(--signal); }
+  .stat-label{
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--text-faint);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{ padding: 90px 0; position: relative; }
+  .section-head{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .section-title{
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3.2vw, 2.2rem);
+    font-weight: 600;
+    margin-top: 10px;
+  }
+  .section-count{
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-faint);
+  }
+
+  /* ---------- PROFILE / BRIEFING ---------- */
+  .briefing{
+    background: var(--panel);
+    border: 1px solid var(--hairline);
+    border-left: 3px solid var(--signal);
+    border-radius: 4px;
+    padding: 36px 40px;
+    position: relative;
+  }
+  .briefing p{ color: var(--text-dim); font-size: 1.02rem; max-width: 720px; }
+  .briefing-meta{
+    display: flex;
+    gap: 32px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+    font-family: var(--font-mono);
+    font-size: 12px;
+  }
+  .briefing-meta div{ display:flex; flex-direction:column; gap:4px; }
+  .briefing-meta .k{ color: var(--text-faint); text-transform: uppercase; letter-spacing:0.08em; }
+  .briefing-meta .v{ color: var(--signal); }
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 24px;
+  }
+  @media (max-width: 800px){ .skills-grid{ grid-template-columns: 1fr; } }
+  .panel-card{
+    background: var(--panel);
+    border: 1px solid var(--hairline);
+    border-radius: 4px;
+    padding: 30px 32px;
+  }
+  .panel-card h3{
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 24px;
+  }
+  .signal-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--hairline);
+    font-family: var(--font-body);
+    font-size: 14.5px;
+  }
+  .signal-row:last-child{ border-bottom: none; }
+  .tag-cloud{ display:flex; flex-wrap:wrap; gap:10px; }
+  .tag{
+    font-family: var(--font-mono);
+    font-size: 12px;
+    padding: 8px 13px;
+    border: 1px solid var(--hairline);
+    border-radius: 3px;
+    color: var(--text-dim);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .tag:hover{ border-color: var(--amber); color: var(--amber); }
+  .lang-row{ display:flex; gap:14px; margin-top: 18px; }
+  .lang-pill{
+    font-family: var(--font-mono);
+    font-size: 12px;
+    padding: 7px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--hairline);
+    color: var(--text-dim);
+  }
+
+  /* ---------- PROJECTS / CASE FILES ---------- */
+  .case{
+    background: var(--panel);
+    border: 1px solid var(--hairline);
+    border-radius: 4px;
+    padding: 32px 36px;
+    margin-bottom: 22px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+  .case:hover{ border-color: var(--signal-dim); transform: translateY(-3px); }
+  .case-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .case-id{
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--text-faint);
+    letter-spacing: 0.1em;
+  }
+  .case-title{
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin-top: 8px;
+    color: var(--text);
+  }
+  .stamp{
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border: 1.5px solid var(--amber);
+    color: var(--amber);
+    border-radius: 3px;
+    transform: rotate(-3deg);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .stamp.deployed{ border-color: var(--signal); color: var(--signal); }
+  .case-body{ margin-top: 18px; color: var(--text-dim); font-size: 0.98rem; max-width: 680px; }
+  .case-stack{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+  }
+  .case-stack span{
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-faint);
+    padding: 5px 10px;
+    border: 1px solid var(--hairline);
+    border-radius: 3px;
+  }
+
+  /* ---------- HACKATHON FEATURE ---------- */
+  .feature{
+    background: linear-gradient(160deg, var(--panel-2), var(--panel));
+    border: 1px solid var(--hairline);
+    border-radius: 6px;
+    padding: 46px 44px;
+    position: relative;
+    overflow: hidden;
+  }
+  .feature::after{
+    content: "WINNER";
+    position: absolute;
+    right: -18px;
+    top: 26px;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: var(--ink);
+    background: var(--amber);
+    padding: 8px 46px;
+    transform: rotate(6deg);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+  }
+  .feature h3{
+    font-family: var(--font-display);
+    font-size: 1.7rem;
+    font-weight: 700;
+    max-width: 560px;
+  }
+  .feature .sub{
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--signal);
+    margin-top: 12px;
+    letter-spacing: 0.05em;
+  }
+  .feature p{
+    margin-top: 20px;
+    color: var(--text-dim);
+    max-width: 620px;
+  }
+  .feature-tags{ display:flex; gap:10px; margin-top:24px; flex-wrap:wrap; }
+  .feature-tags span{
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-faint);
+    border: 1px solid var(--hairline);
+    padding: 6px 11px;
+    border-radius: 3px;
+  }
+
+  /* ---------- EDUCATION ---------- */
+  .timeline{ position: relative; padding-left: 28px; }
+  .timeline::before{
+    content:"";
+    position: absolute;
+    left: 4px; top: 6px; bottom: 6px;
+    width: 1px;
+    background: var(--hairline);
+  }
+  .t-item{ position: relative; padding-bottom: 40px; }
+  .t-item:last-child{ padding-bottom: 0; }
+  .t-item::before{
+    content:"";
+    position: absolute;
+    left: -28px; top: 4px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--ink);
+    border: 2px solid var(--signal);
+  }
+  .t-year{ font-family: var(--font-mono); font-size: 12px; color: var(--text-faint); }
+  .t-name{ font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; margin-top: 6px; }
+  .t-detail{ color: var(--text-dim); font-size: 0.95rem; margin-top: 6px; }
+  .t-detail b{ color: var(--signal); font-weight: 600; }
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  footer{
+    padding: 90px 0 60px;
+    border-top: 1px solid var(--hairline);
+    margin-top: 40px;
+  }
+  .contact-lead{
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 600;
+    max-width: 640px;
+    line-height: 1.15;
+  }
+  .contact-lead span{ color: var(--signal); }
+  .contact-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 48px;
+  }
+  @media (max-width: 720px){ .contact-grid{ grid-template-columns: 1fr; } }
+  .contact-card{
+    border: 1px solid var(--hairline);
+    border-radius: 4px;
+    padding: 22px 24px;
+    transition: border-color 0.2s, transform 0.2s;
+    display: block;
+  }
+  .contact-card:hover{ border-color: var(--signal); transform: translateY(-2px); }
+  .contact-card .k{
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .contact-card .v{
+    margin-top: 8px;
+    font-size: 0.95rem;
+    color: var(--text);
+    word-break: break-word;
+  }
+  .foot-note{
+    margin-top: 60px;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--text-faint);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* ---------- REVEAL ANIMATION ---------- */
+  .reveal{
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.in{ opacity: 1; transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation: none !important; transition: none !important; }
+    .reveal{ opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-id"><b>ASM</b> / case-file-active</div>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <div class="file-tag"><span class="dot"></span> Subject File · Open · Final-Year CSE</div>
+  <h1 class="hero-name" id="heroName"></h1>
+  <div class="hero-role">B.E COMPUTER SCIENCE &amp; ENGINEERING — MADRAS INSTITUTE OF TECHNOLOGY, ANNA UNIVERSITY</div>
+  <p class="hero-desc">Final-year Computer Science and Engineering student specializing in full-stack development and applied AI. Experienced in building end-to-end systems — from machine learning models to production-ready web applications — with a strong focus on problem-solving and practical engineering.</p>
+  <div class="hero-stats">
+    <div>
+      <div class="stat-num"><span>8.69</span>/10</div>
+      <div class="stat-label">Current CGPA</div>
+    </div>
+    <div>
+      <div class="stat-num"><span>3</span></div>
+      <div class="stat-label">Shipped Projects</div>
+    </div>
+    <div>
+      <div class="stat-num"><span>1</span><sup style="font-size:0.9rem;">st</sup></div>
+      <div class="stat-label">Smart India Hackathon 2025</div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="briefing">
+    <div class="eyebrow">01 · Briefing</div>
+    <div class="section-title">Profile</div>
+    <div class="briefing reveal">
+      <p>Final-year Computer Science student with a strong foundation in programming, data structures, and web development. Comfortable across multiple languages and databases, with hands-on experience in full-stack systems. Motivated by problem-solving, algorithm optimization, and turning research ideas into working software — currently looking for a role where I can apply that to real-world engineering problems.</p>
+      <div class="briefing-meta">
+        <div><span class="k">Location</span><span class="v">Chennai, Tamil Nadu, India</span></div>
+        <div><span class="k">Status</span><span class="v">Open to Opportunities</span></div>
+        <div><span class="k">Graduating</span><span class="v">2027</span></div>
+        <div><span class="k">Focus</span><span class="v">Full-Stack · AI Systems · Security</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="eyebrow">02 · Signal</div>
+    <div class="section-title">Technical Proficiency</div>
+    <div class="skills-grid">
+      <div class="panel-card reveal">
+        <h3>Hard Skills</h3>
+        <div class="tag-cloud">
+          <span class="tag">C Programming</span>
+          <span class="tag">C++</span>
+          <span class="tag">Java</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">SQL Plus</span>
+          <span class="tag">HTML / CSS</span>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:24px;">
+        <div class="panel-card reveal">
+          <h3>Soft Skills</h3>
+          <div class="tag-cloud">
+            <span class="tag">Strong Communication</span>
+            <span class="tag">Leadership</span>
+            <span class="tag">Time Management</span>
+            <span class="tag">Critical Thinking</span>
+          </div>
+        </div>
+        <div class="panel-card reveal">
+          <h3>Languages</h3>
+          <div class="lang-row">
+            <span class="lang-pill">English</span>
+            <span class="lang-pill">Tamil</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">03 · Case Files</div>
+        <div class="section-title">Projects</div>
+      </div>
+      <div class="section-count">5 files · all active</div>
+    </div>
+
+    <div class="case reveal">
+      <div class="case-top">
+        <div>
+          <div class="case-id">FILE // CS-01 // STORAGE SYSTEMS</div>
+          <div class="case-title">ChunkSense — Adaptive File Deduplication System</div>
+        </div>
+        <div class="stamp deployed">ML-Driven</div>
+      </div>
+      <p class="case-body">An AI-powered deduplication engine that dynamically chooses the optimal chunking strategy per file, rather than applying one fixed rule to everything. Implemented adaptive chunking with SHA-256 hashing, duplicate detection, version analysis, and storage optimization built for cloud environments.</p>
+      <div class="case-stack"><span>Machine Learning</span><span>SHA-256</span><span>Cloud Storage</span><span>Python</span></div>
+    </div>
+
+    <div class="case reveal">
+      <div class="case-top">
+        <div>
+          <div class="case-id">FILE // CS-02 // CYBER INTELLIGENCE</div>
+          <div class="case-title">CIPHER — AI-Based Cybercrime Intelligence Framework</div>
+        </div>
+        <div class="stamp">Hackathon Winner</div>
+      </div>
+      <p class="case-body">A predictive framework that forecasts likely cash-withdrawal locations the moment a cyber-fraud complaint is registered — turning a reactive complaint into actionable, time-sensitive intelligence for law enforcement, through geospatial risk modeling and real-time alerts.</p>
+      <div class="case-stack"><span>Predictive Analytics</span><span>Geospatial Modeling</span><span>Real-Time Alerts</span></div>
+    </div>
+
+    <div class="case reveal">
+      <div class="case-top">
+        <div>
+          <div class="case-id">FILE // CS-03 // FULL-STACK PRODUCT</div>
+          <div class="case-title">AI-Powered Blogging Platform</div>
+        </div>
+        <div class="stamp deployed">MERN Stack</div>
+      </div>
+      <p class="case-body">A full-stack blogging application with user authentication, an AI feature that auto-generates blog descriptions on request via external APIs, secure API key handling, and a responsive, real-time editing experience built for scale.</p>
+      <div class="case-stack"><span>MongoDB</span><span>Express</span><span>React</span><span>Node.js</span></div>
+    </div>
+
+    <div class="case reveal">
+      <div class="case-top">
+        <div>
+          <div class="case-id">FILE // CS-04 // CONSOLE SYSTEMS</div>
+          <div class="case-title">Hotel Management System</div>
+        </div>
+        <div class="stamp deployed">C++</div>
+      </div>
+      <p class="case-body">A menu-driven console application that lets users select and customize orders from a dynamic menu, then automatically calculates and generates bills — including discount application. Built with modular programming and clean logical workflows to keep a console-based system genuinely usable.</p>
+      <div class="case-stack"><span>C++</span><span>Modular Programming</span><span>Billing Logic</span></div>
+    </div>
+
+    <div class="case reveal">
+      <div class="case-top">
+        <div>
+          <div class="case-id">FILE // CS-05 // REAL-TIME DATA</div>
+          <div class="case-title">Live Traffic Detector</div>
+        </div>
+        <div class="stamp deployed">Java · API</div>
+      </div>
+      <p class="case-body">A Java application that fetches live traffic updates for specific locations via API calls, then opens Google Maps to display current traffic conditions directly within the app — built to sharpen skills in API integration and real-time data visualization.</p>
+      <div class="case-stack"><span>Java</span><span>API Integration</span><span>Google Maps</span><span>Real-Time Data</span></div>
+    </div>
+  </section>
+
+  <section id="hackathon">
+    <div class="eyebrow">04 · Recognition</div>
+    <div class="section-title">Experience</div>
+    <div class="feature reveal">
+      <div class="sub">SMART INDIA HACKATHON 2025 · GRAND FINALE</div>
+      <h3>Winner — Cyber Security &amp; Blockchain Theme</h3>
+      <p>Represented Madras Institute of Technology as part of Team SKYVAR, building <b style="color:var(--text);">CIPHER — a CyberCrime Intelligence and Predictive Hotspot Engine for Response</b>. Secured first place for Problem Statement PS-25257, proposed by the Indian Cyber Crime Coordination Centre (I4C), Ministry of Home Affairs, Government of India.</p>
+      <div class="feature-tags">
+        <span>Team SKYVAR</span>
+        <span>PS-25257</span>
+        <span>I4C · MHA</span>
+        <span>National Finale</span>
+      </div>
+    </div>
+
+    <div class="case reveal" style="margin-top:22px;">
+      <div class="case-top">
+        <div>
+          <div class="case-id">FILE // EXP-02 // COMPUTER VISION</div>
+          <div class="case-title">Participant — Caterpillar Techathon 2025</div>
+        </div>
+        <div class="stamp deployed">Computer Vision</div>
+      </div>
+      <p class="case-body"><b style="color:var(--text);">Monocular Depth Estimation Project</b> — worked on a computer vision model that estimates depth from a single image. Contributed to data preprocessing, model design, and performance evaluation using Python and deep learning frameworks.</p>
+      <div class="case-stack"><span>Python</span><span>Deep Learning</span><span>Computer Vision</span></div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="eyebrow">05 · Record</div>
+    <div class="section-title">Education</div>
+    <div class="timeline">
+      <div class="t-item reveal">
+        <div class="t-year">2023 — 2027</div>
+        <div class="t-name">Madras Institute of Technology, Anna University</div>
+        <div class="t-detail">B.E Computer Science and Engineering · Current CGPA <b>8.69</b></div>
+      </div>
+      <div class="t-item reveal">
+        <div class="t-year">2022 — 2023</div>
+        <div class="t-name">Maria Rafols Matric Higher Secondary School</div>
+        <div class="t-detail">12th Grade · <b>97%</b></div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="eyebrow">06 · Contact</div>
+    <div class="contact-lead" style="margin-top:14px;">Have a role in mind? <span>Let's close this case.</span></div>
+    <p style="margin-top:20px; color:var(--text-dim); font-family:var(--font-mono); font-size:13px;">
+      anstish.sahana2005@gmail.com &nbsp;·&nbsp; +91 99441 46955
+    </p>
+    <div class="contact-grid" style="grid-template-columns: repeat(3, 1fr);">
+      <a class="contact-card reveal" href="https://linkedin.com/in/AnstishSahanaM" target="_blank" rel="noopener">
+        <div class="k">LinkedIn</div>
+        <div class="v">AnstishSahanaM</div>
+      </a>
+      <a class="contact-card reveal" href="https://github.com/Anstishsahana" target="_blank" rel="noopener">
+        <div class="k">GitHub</div>
+        <div class="v">Anstishsahana</div>
+      </a>
+      <a class="contact-card reveal" href="#" target="_blank" rel="noopener">
+        <div class="k">LeetCode</div>
+        <div class="v">Anstish_Sahana_M</div>
+      </a>
+    </div>
+    <div class="foot-note">
+      <span>© 2026 Anstish Sahana M</span>
+      <span>Chennai, India</span>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+  // Hero typing reveal
+  const name = "Anstish Sahana M";
+  const el = document.getElementById('heroName');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function typeName(){
+    let i = 0;
+    el.innerHTML = '<span class="cursor">&nbsp;</span>';
+    const interval = setInterval(() => {
+      i++;
+      el.innerHTML = name.slice(0, i) + '<span class="cursor">&nbsp;</span>';
+      if(i >= name.length){ clearInterval(interval); }
+    }, 55);
+  }
+  if(reduced){ el.textContent = name; } else { typeName(); }
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(elx => io.observe(elx));
+</script>
+
+</body>
+</html>
